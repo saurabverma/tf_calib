@@ -1,0 +1,14 @@
+<launch>
+    <!-- user input -->
+    <arg name="use_sim_time" default="false"/>
+    <arg name="pcd_name" default="/home/saurab/Desktop/tf_livox_bag/data/cloudcompare/output_v3.pcd"/>
+
+    <!-- setup and run -->
+    <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+    <node name="tf_calib_node" pkg="tf_calib" type="tf_calib_node" output="screen" required="true" launch-prefix="gdb -ex run --args">
+        <param name="bag_name" value="$(arg bag_name)"/>
+        <param name="topic_name" value="$(arg topic_name)"/>
+        <param name="pcd_name" value="$(arg pcd_name)"/>
+    </node>
+
+</launch>

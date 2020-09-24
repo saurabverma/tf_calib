@@ -2,7 +2,8 @@
 <package format="2">
   <name>tf_calib</name>
   <version>0.0.0</version>
-  <description>The manual tf calibration package</description>
+  <description>The manual tf calibration package. Helps approximate tf among
+  various sensors. For usage, follow roslaunch in serial order.</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

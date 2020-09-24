@@ -1,0 +1,16 @@
+<launch>
+	<!-- user input -->
+	<arg name="use_sim_time" default="false"/>
+	<arg name="bag_name" default="/home/saurab/Desktop/tf_livox_bag/2020-09-23-16-39-01.bag"/>
+	<arg name="topic_name" default="/livox/lidar"/>
+	<arg name="pcd_name" default="/home/saurab/Desktop/tf_livox_bag/output.pcd"/>
+
+	<!-- setup and run -->
+	<param name="/use_sim_time" value="$(arg use_sim_time)"/>
+	<node name="accumulate_pts" pkg="tf_calib" type="accumulate_pts" output="screen" required="true">
+		<param name="bag_name" value="$(arg bag_name)"/>
+		<param name="topic_name" value="$(arg topic_name)"/>
+		<param name="pcd_name" value="$(arg pcd_name)"/>
+	</node>
+
+</launch>
