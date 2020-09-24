@@ -5,10 +5,11 @@
 
     <!-- setup and run -->
     <param name="/use_sim_time" value="$(arg use_sim_time)"/>
-    <node name="tf_calib_node" pkg="tf_calib" type="tf_calib_node" output="screen" required="true" launch-prefix="gdb -ex run --args">
-        <param name="bag_name" value="$(arg bag_name)"/>
-        <param name="topic_name" value="$(arg topic_name)"/>
+    <!-- <node name="extract_sensors" pkg="tf_calib" type="extract_sensors" output="screen" required="true" launch-prefix="gdb -ex run -'-args"> -->
+    <node name="extract_sensors" pkg="tf_calib" type="extract_sensors" output="screen" required="true">
         <param name="pcd_name" value="$(arg pcd_name)"/>
+        <param name="in_csv_name" value="$(find tf_calib)/launch/sensor_tf.csv"/>
+        <param name="out_csv_name" value="$(find tf_calib)/launch/sensor_tf_relative.csv"/>
     </node>
 
 </launch>

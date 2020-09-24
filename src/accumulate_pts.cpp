@@ -6,8 +6,8 @@
  * Author: Dr. Saurab VERMA (saurab_verma@i2r.a-star.edu.sg)
  */
 
-/****** ****** ****** ****** ***** Link libraries ****** ****** ****** ****** *****/
-
+// Link libraries
+#include <ros/ros.h>
 #include <rosbag/bag.h>
 #include <rosbag/view.h>
 #include <sensor_msgs/PointCloud2.h>
@@ -47,4 +47,5 @@ int main(int argc, char **argv)
 
 	// Store data
 	pcl::io::savePCDFile(pcd_name, acc_cloud);
+	ROS_INFO_STREAM("Accumulated pointcloud stored to " << pcd_name);
 }
