@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(tf_calib)
 
 # Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++14)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(PCL REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -119,6 +120,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -155,9 +157,11 @@ add_executable(extract_sensors src/extract_sensors.cpp)
 # )
 target_link_libraries(accumulate_pts
   ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
 )
 target_link_libraries(extract_sensors
   ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
 )
 
 #############

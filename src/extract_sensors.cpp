@@ -7,6 +7,7 @@
  */
 
 // Link libraries
+#include <chrono>
 #include <thread>
 #include <fstream>
 #include <ros/ros.h>
@@ -18,8 +19,6 @@
 
 int main(int argc, char **argv)
 {
-	using namespace std::literals::chrono_literals;
-
 	// Initialize
 	ros::init(argc, argv, "extract_sensors");
 	ros::NodeHandle pnh("~");
@@ -45,7 +44,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	unsigned int item_count = 0;
-	while (getline(TextFile, line))
+	while (getline(CsvFile, line))
 	{
 		// TODO: Show axes to sensors
 
@@ -60,12 +59,13 @@ int main(int argc, char **argv)
 	viewer->setBackgroundColor(0, 0, 0);
 	viewer->addCoordinateSystem(5.0, "lidar");
 	viewer->initCameraParameters();
-	viewer->addPointCloud<pcl::PointXYZI>(av_cloud, "pointcloud");
+	pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZI> intensity_distribution(av_cloud, "intensity");
+	viewer->addPointCloud<pcl::PointXYZI>(av_cloud, intensity_distribution, "pointcloud");
 
 	while (!viewer->wasStopped())
 	{
 		viewer->spinOnce(100);
-		std::this_thread::sleep_for(100ms);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 	// TODO: Compute and store relative tf

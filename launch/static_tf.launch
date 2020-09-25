@@ -1,0 +1,19 @@
+<launch>
+	<!-- x y z yaw pitch roll frame_id child_frame_id period_in_ms -->
+	<node pkg="tf" type="static_transform_publisher" name="ouster_tf"
+		args="10.29 -3.85 2.51 0.0 0.0 0.0 temp ouster 100" />
+	<node pkg="tf" type="static_transform_publisher" name="front_vel_tf"
+		args="13.53 -3.78 1.18 0.0 0.46 0.0 temp front_vel 100" />
+	<node pkg="tf" type="static_transform_publisher" name="top_vel_tf"
+		args="10.55 -3.85 2.36 0.0 0.0 0.0 temp top_vel 100" />
+	<node pkg="tf" type="static_transform_publisher" name="primary_gps_ant_tf"
+		args="10.95 -3.90 2.19 0.0 0.0 0.0 temp primary_gps_ant 100" />
+	<node pkg="tf" type="static_transform_publisher" name="secondary_gps_ant_tf"
+		args="9.57 -3.91 2.19 0.0 0.0 0.0 temp secondary_gps_ant 100" />
+	<node pkg="tf" type="static_transform_publisher" name="imu_tf"
+		args="9.84 -3.87 0.75 0.0 0.0 0.0 temp imu 100" />
+
+	<!-- pcd to sensor_msg -->
+	<node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud"
+		args="/home/saurab/Desktop/tf_livox_bag/data/cloudcompare/output_v3.pcd 1.0 _frame_id:=/temp _latch:=true" />
+</launch>
