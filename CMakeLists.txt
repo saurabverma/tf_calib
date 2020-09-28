@@ -138,7 +138,6 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/tf_calib_node.cpp)
 add_executable(accumulate_pts src/accumulate_pts.cpp)
-add_executable(extract_sensors src/extract_sensors.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,10 +155,6 @@ add_executable(extract_sensors src/extract_sensors.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(accumulate_pts
-  ${catkin_LIBRARIES}
-  ${PCL_LIBRARIES}
-)
-target_link_libraries(extract_sensors
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
